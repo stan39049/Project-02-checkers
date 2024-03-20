@@ -24,6 +24,7 @@ tracks = ["music/Track1.mp3", "music/Track2.mp3", "music/Track3.mp3", "music/Tra
 current_track = 0
 SONG_END = pygame.USEREVENT + 1
 second_menu = SecondMenu(tracks)
+cursor_color_set = (100, 100, 100)
 
 
 def music_loop():
@@ -74,7 +75,7 @@ def main():
     m = next(client.p.subreddit.pull.top('Temple', amount=1, time='hour'))
     print(m.title)
     print(m.permalink)
-    
+
     running = True
     while running:
         # did the user click the window close button?
@@ -125,7 +126,7 @@ def menu_buttons():
     startgame_icon_rect = startgame_icon_resized.get_rect(topleft=(Width // 2 - 150 + 10, Height // 3 + (button_height - icon_size[1] - 50) // 2))
 
     color = (128, 128, 128) # grey
-    cursor_color = (100, 100, 100) # darker grey
+    cursor_color = cursor_color_set # darker grey
     position = (Width // 2-150, Height // 3-25)
     size = (300, 50)  # width, height
         
@@ -182,7 +183,7 @@ def menu_buttons():
     tutorial_icon = pygame.image.load('pics/tutorial_icon.png')
 
     color = (128, 128, 128) # grey
-    cursor_color = (100, 100, 100) # darker grey
+    cursor_color = cursor_color_set # darker grey
     position = (Width // 2-150, Height // 3 + 135)
     size = (300, 50)  # width, height
 
@@ -214,7 +215,7 @@ def menu_buttons():
     leaderboard_icon = pygame.image.load('pics/leaderboard_icon.png')
 
     color = (128, 128, 128) # grey
-    cursor_color = (100, 100, 100) # darker grey
+    cursor_color = cursor_color_set # darker grey
     position = (Width // 2 - 150, Height // 3 + 210)  # Adjust the vertical position as needed
     size = (300, 50)  # width, height
 
@@ -249,7 +250,7 @@ def menu_buttons():
     board_icon = pygame.image.load('pics/colorwheel_icon.png')
 
     color = (128, 128, 128) # grey
-    cursor_color = (100, 100, 100) # darker grey
+    cursor_color = cursor_color_set # darker grey
     position = (Width // 2 - 150, Height // 3 + 285)  # Adjust the vertical position as needed
     size = (300, 50)  # width, height
 
@@ -399,7 +400,7 @@ def settings():
     settings_screen.blit(credits_text2, credits_rect2)
 
     color = (128, 128, 128) # grey
-    cursor_color = (100, 100, 100) # darker grey
+    cursor_color = cursor_color_set # darker grey
     position = (Width // 2-150, Height // 3-25)
     size = (300, 50)  # width, height
     button_font = pygame.font.Font(None, 32)
@@ -556,12 +557,16 @@ def board_customization():
                     return
                 if red_square_rect.collidepoint(event.pos): # make board red
                     second_menu_instance.color = RED
+                    cursor_color_set = (0, 255, 255) # make cursor cyan
                 if blue_square_rect.collidepoint(event.pos): # make board blue
                     second_menu_instance.color = BLUE
+                    cursor_color_set = (255, 255, 0) # make cursor yellow
                 if yellow_square_rect.collidepoint(event.pos): # make board yellow
                     second_menu_instance.color = YELLOW
+                    cursor_color_set = (0, 0, 255) # make cursor blue
                 if green_square_rect.collidepoint(event.pos): # make board green
                     second_menu_instance.color = GREEN
+                    cursor_color_set = (255, 0, 255) # make cursor magenta
             elif event.type == SONG_END:
                 music_loop()
 
