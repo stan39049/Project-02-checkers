@@ -69,6 +69,12 @@ def main():
     If a user hovers over a button, the button will change color to indicate that it has been clicked. If the user clicks on a button,
     the corresponding function will be called.
     """
+
+    client = redditwarp.SYNC.Client()
+    m = next(client.p.subreddit.pull.top('Temple', amount=1, time='hour'))
+    print(m.title)
+    print(m.permalink)
+    
     running = True
     while running:
         # did the user click the window close button?
