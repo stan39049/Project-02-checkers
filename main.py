@@ -4,6 +4,7 @@ The main file holds menu operations for the game including sound, settings, lead
 
 """
 import pygame
+import redditwarp.SYNC
 from SecondMenu import SecondMenu
 from constants import BLUE, YELLOW, RED, GREEN
 from ScoreManager import ScoreManager
